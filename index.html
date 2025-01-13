@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWASP Sharda</title>
+    <!-- Font Awesome for social media icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Reset and basic styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Header section */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 35px;
+            background: linear-gradient(90deg, #dadce1, #162ee0);
+            /* Smooth gradient with a professional look */
+            color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            /* Add subtle shadow */
+            border-bottom: 2px solid #ffd700;
+            /* Add golden border */
+        }
+
+        .header .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            /* Add spacing between logo and text */
+        }
+
+        .header .logo img {
+            width: 80px;
+            /* Set a proper width for the logo */
+            height: 80px;
+            border-radius: 50%;
+            /* Circular logo */
+            border: 2px solid #959493;
+            /* Add golden border around logo */
+        }
+
+        .header .logo span {
+            font-size: 32px;
+            /* Increased font size for better visibility */
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #100f0d;
+            /* Golden color for the title */
+        }
+
+        .header nav {
+            display: flex;
+            gap: 25px;
+            /* Spacing between navigation links */
+        }
+
+        .header nav a {
+            text-decoration: none;
+            color: white;
+            font-size: 22px;
+            /* Slightly larger font size */
+            font-weight: 500;
+            /* Make text more prominent */
+            transition: color 0.3s, transform 0.3s;
+            /* Smooth hover effects */
+            position: relative;
+        }
+
+        .header nav a:hover {
+            color: #090805;
+            /* Change text to golden on hover */
+            transform: scale(1.1);
+            /* Slightly enlarge text on hover */
+        }
+
+        .header nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            /* Position underline slightly below the text */
+            width: 0;
+            height: 2px;
+            background: #ffd700;
+            /* Golden underline */
+            transition: width 0.3s;
+        }
+
+        .header nav a:hover::after {
+            width: 100%;
+            /* Expand underline on hover */
+        }
+
+        /* Background Section (Replacing Hero Section) */
+        .background-section {
+            height: 60vh;
+            /* Height of the hero section */
+            background-image: url('owasp2.jpg');
+            /* Replace with your image path */
+            background-size: cover;
+            /* Make the image cover the section */
+            background-position: center;
+            /* Center the image */
+            color: white;
+        }
+
+        /* About Section */
+        /* General Styles */
+        .about {
+            padding: 50px 30px;
+            background: linear-gradient(135deg, #e0f7fa, #f4f4f4);
+            color: #333;
+            text-align: center;
+            font-family: 'Open Sans', sans-serif;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            margin: 50px auto;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Heading Styles */
+        .about-heading {
+            font-size: 50px;
+            font-weight: 700;
+            color: #030303;
+            text-transform: none;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+        }
+
+        /* List Styles */
+        .about-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .about-item {
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            font-size: 24px;
+            color: #1a3d6d;
+            font-weight: 600;
+        }
+
+        .about-text {
+            font-size: 18px;
+            color: #555;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* List Styles */
+        .about-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .about-item {
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            font-size: 24px;
+            color: #1a3d6d;
+            font-weight: 600;
+        }
+
+        .about-text {
+            font-size: 18px;
+            color: #555;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+
+        .offer-list {
+            padding-left: 20px;
+            margin-top: 10px;
+            list-style-type: none;
+        }
+
+        .offer-item {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .offer-item::before {
+            content: '→';
+            /* Adds the right arrow symbol */
+            position: absolute;
+            left: -25px;
+            /* Adjusts the position of the arrow */
+            font-size: 24px;
+            color: #1a3d6d;
+            /* Sets the color of the arrow */
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .about-heading {
+                font-size: 32px;
+                margin-bottom: 20px;
+            }
+
+            .about-text {
+                font-size: 16px;
+            }
+
+            .offer-item {
+                font-size: 16px;
+            }
+        }
+
+
+        /* Events section */
+        .events {
+            padding: 60px 30px;
+            background-color: #f8f8f8;
+            /* Light grey background for contrast */
+            border-radius: 10px;
+            /* Rounded corners for a softer look */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow for depth */
+        }
+
+        .events-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .events-header h2 {
+            font-size: 28px;
+            font-weight: 600;
+            /* Make the header more prominent */
+            color: #333;
+            /* Darker color for better readability */
+            transition: color 0.3s ease;
+        }
+
+        .events-header h2:hover {
+            color: #007bff;
+            /* Hover effect on the header */
+        }
+
+        .events-header select {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            transition: background-color 0.3s ease;
+        }
+
+        .events-header select:hover {
+            background-color: #e0e0e0;
+            /* Subtle hover effect on the dropdown */
+        }
+
+        /* Event details with larger images */
+        .event-details {
+            display: flex;
+            gap: 30px;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-top: 20px;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            /* Add shadow for more depth */
+            transition: transform 0.3s ease;
+        }
+
+        .event-details:hover {
+            transform: translateY(-5px);
+            /* Hover effect to slightly lift the container */
+        }
+
+        .event-details img {
+            width: 320px;
+            height: 200px;
+            object-fit: cover;
+            /* Ensure images maintain a good aspect ratio */
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            /* Add shadow around the image */
+            transition: transform 0.3s ease;
+        }
+
+        .event-details img:hover {
+            transform: scale(1.05);
+            /* Slight zoom effect on hover */
+        }
+
+        .event-details ul {
+            margin-left: 20px;
+            list-style-type: square;
+        }
+
+        .event-details ul li {
+            margin-bottom: 12px;
+            color: #555;
+            /* Lighter text color for better readability */
+            font-size: 16px;
+        }
+
+        .event-details ul li:hover {
+            color: #007bff;
+            /* Change text color on hover */
+        }
+
+        /* Team section */
+        .team {
+            padding: 40px 20px;
+            background-color: #f4f4f4;
+        }
+
+        .team h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .team-members-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            /* Responsive grid */
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Team member card styles */
+        .team-member {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .team-member:hover {
+            transform: scale(1.05);
+            /* Slight zoom on hover */
+        }
+
+        /* Profile image */
+        .team-member img {
+            width: 120px;
+            /* Increased image size */
+            height: 120px;
+            border-radius: 50%;
+            /* Circular image */
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        /* Team member info text */
+        .team-member .member-info h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .team-member .member-info p {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .team-member .member-info strong {
+            color: #333;
+        }
+
+        /* Contact Us Modal Popup */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .popup-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .popup-content h2 {
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .popup-content input,
+        .popup-content textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .popup-content button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ffd700;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .popup-content button:hover {
+            background-color: #f1a800;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: #ff0000;
+        }
+
+        .watermark {
+            position: fixed;
+            bottom: 10px;
+            /* Distance from the bottom of the viewport */
+            right: 10px;
+            /* Distance from the right of the viewport */
+            font-size: 14px;
+            /* Adjust font size as needed */
+            color: rgba(13, 13, 14, 0.6);
+            /* Light color with transparency for watermark effect */
+            font-family: Arial, sans-serif;
+            /* Choose a clean font */
+            z-index: 999;
+            /* Ensure it stays above other elements */
+            pointer-events: none;
+            /* Prevent interaction with the watermark */
+        }
+
+
+        /* Footer section */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+        }
+
+        footer .footer-top {
+            display: flex;
+            justify-content: space-between;
+            padding: 2px 50px;
+        }
+
+        footer .footer-top div {
+            flex: 1;
+            padding: 0 20px;
+        }
+
+        footer .footer-top h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        footer .footer-top p {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: white;
+        }
+
+        footer .footer-top a {
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+        }
+
+        footer .footer-top a:hover {
+            text-decoration: underline;
+            color: #ddd;
+        }
+
+        footer .social-icons a {
+            display: inline-block;
+            margin-right: 15px;
+            font-size: 20px;
+            color: white;
+            transition: color 0.3s;
+        }
+
+        footer .social-icons a:hover {
+            color: #f0f0f0;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+            color: #aaa;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="logo.jpeg" alt="OWASP Sharda Logo">
+            <span>OWASP Sharda</span>
+        </div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#events">Events</a>
+            <a href="#team">Team</a>
+            <a href="#" id="contactUsBtn">Contact Us</a>
+        </nav>
+    </header>
+
+    <!-- Background Section (Replacing Hero Section) -->
+    <div class="background-section"></div>
+
+    <!-- About Section -->
+    <div class="about" id="about">
+        <div class="hero-content">
+            <h1 class="about-heading">About Us</h1>
+            <ul class="about-list">
+                <li class="about-item">
+                    <strong class="highlight">Welcome to the OWASP Sharda University Chapter!</strong>
+                    <p class="about-text">A vibrant community for tech enthusiasts across various fields such as
+                        software development, AI, web design, cybersecurity, and digital arts. We embrace all realms of
+                        technology, from ethical hacking to creative design, providing a platform for innovation and
+                        collaboration.</p>
+                </li>
+                <li class="about-item">
+                    <strong class="highlight">What We Offer:</strong>
+                    <ul class="offer-list">
+                        <li class="offer-item">Explore technologies like ethical hacking, AI, web development, and more.
+                        </li>
+                        <li class="offer-item">Collaborate on multidisciplinary projects with like-minded peers.</li>
+                        <li class="offer-item">Join specialized teams in areas such as design, social media, public
+                            relations, and technical development.</li>
+                        <li class="offer-item">Participate in workshops, hackathons, and events hosted by tech experts.
+                        </li>
+                        <li class="offer-item">Contribute to real-world projects, build your portfolio, and gain
+                            hands-on experience.</li>
+                    </ul>
+                </li>
+                <li class="about-item">
+                    <strong class="highlight">Our Goal:</strong>
+                    <p class="about-text">Our chapter is dedicated to fostering a collaborative environment where
+                        everyone can thrive, grow, and make a meaningful impact in the tech world.</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="events" id="events">
+        <div class="events-header">
+            <h2>Events</h2>
+            <select>
+                <option>All Events</option>
+                <option>Cybersecurity</option>
+                <option>Blockchain</option>
+                <option>AI/ML</option>
+                <option>Data Science</option>
+            </select>
+        </div>
+        <div class="event-details">
+            <img src="event1.jpeg" alt="Event 1">
+            <ul>
+                <li><strong>Event: </strong> Cybersecurity Bootcamp</li>
+                <li>Learn about ethical hacking, penetration testing, and more.</li>
+                <li>Date: January 15, 2024</li>
+            </ul>
+        </div>
+        <div class="event-details">
+            <img src="event2.jpeg" alt="Event 2">
+            <ul>
+                <li><strong>Event: </strong> Sharda Visiting Workshop</li>
+                <li>Explore the world of Sharda Campus ( The world is here, Where  are you ??).</li>
+                <li>Date: January 20, 2025</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Team Section -->
+    <section id="team" class="team" id="team">
+        <h2>Meet Our Team</h2>
+        <div class="team-member">
+            <img src="lead.png" alt="Team Member">
+            <div class="member-info">
+                <p><strong>Name:</strong> Adnan Alam</p>
+                <p><strong>Role:</strong> Club Lead</p>
+                <p><strong>Email:</strong> mail-mjhe-nhi-pta@gmail.com</p>
+            </div>
+        </div>
+        <div class="team-member">
+            <img src="co-lead.jpg" alt="Team Member">
+            <div class="member-info">
+                <p><strong>Name:</strong> Abhinav</p>
+                <p><strong>Role:</strong> Club Co-Lead</p>
+                <p><strong>Email:</strong> isme-bhi-na-pta@example.com</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Popup -->
+    <div class="popup" id="contactPopup">
+        <div class="popup-content">
+            <span class="close-btn" id="closeBtn">&times;</span>
+            <h2>Contact Us</h2>
+            <form>
+                <input type="text" placeholder="Your Name" required><br>
+                <input type="email" placeholder="Your Email" required><br>
+                <textarea placeholder="Your Message" rows="4" required></textarea><br>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-top">
+            <div>
+                <h3>Contact Us</h3>
+                <p>Email: owaspsharda@gmail.com</p>
+                <p>Phone: +1 123 456 7890</p>
+                <p>Address: Plot no 32, 34, Knowledge Park III, Greater Noida, Uttar Pradesh 201310, India</p>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <p><a href="#">Privacy Policy</a></p>
+                <p><a href="#">Terms of Service</a></p>
+                <p><a href="#">FAQs</a></p>
+                <p><a href="#">About Us</a></p>
+            </div>
+            <div class="social-icons">
+                <h3>Follow Us</h3>
+                <a href="https://www.instagram.com/owasp_sharda/" target="_blank" title="Follow us on Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.linkedin.com/company/owasp-sharda-university/posts/?feedView=all" target="_blank"
+                    title="Connect with us on LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://twitter.com/your_username" target="_blank" title="Follow us on Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 OWASP Sharda. All Rights Reserved.</p>
+        </div>
+        <div class="watermark">Designed by Paurush</div>
+    </footer>
+
+
+    <script>
+        // Open the contact popup
+        document.getElementById("contactUsBtn").addEventListener("click", function () {
+            document.getElementById("contactPopup").style.display = "block";
+        });
+
+        // Close the contact popup
+        document.getElementById("closeBtn").addEventListener("click", function () {
+            document.getElementById("contactPopup").style.display = "none";
+        });
+
+        // Close the popup if clicked outside of it
+        window.addEventListener("click", function (e) {
+            if (e.target == document.getElementById("contactPopup")) {
+                document.getElementById("contactPopup").style.display = "none";
+            }
+        });
+    </script>
+</body>
+
+</html>
