@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs - Notepad</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 300px;
+            font-size: 16px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>FAQs - Notepad</h1>
+    <textarea id="notepad" placeholder="Write your notes here..."></textarea>
+    <script>
+        const notepad = document.getElementById("notepad");
+        
+        // Load saved text from localStorage
+        notepad.value = localStorage.getItem("notepadContent") || "";
+        
+        // Save text to localStorage on change
+        notepad.addEventListener("input", () => {
+            localStorage.setItem("notepadContent", notepad.value);
+        });
+    </script>
+</body>
+</html>
